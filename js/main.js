@@ -5,6 +5,7 @@ const container = document.querySelector('.container');
 const countryContainer = document.querySelector('.country-container');
 const countryFetchContainer = document.querySelector('.country-fetch-container');
 
+
 //hieronder maak ik 3 landen objecten aan
 const countryOne = {
     name: "Nederland",
@@ -29,7 +30,7 @@ console.log(countryArray);
 showCountriesOnPage(countryArray, countryContainer);
 
 //deze functie verwacht een array van landen en een container waarin het getoond gaat worden
-function showCountriesOnPage(countryArray, htmlContainer){
+function showCountriesOnPage(countryArray, htmlContainer) {
     //loop over de landen heen
     for (let i = 0; i < countryArray.length; i++) {
         //haal een land uit de array
@@ -72,3 +73,22 @@ for (let index = 0; index < countries.length; index++) {
 }
 htmlCode += '</ul>';
 container.innerHTML = htmlCode;
+
+
+const musicDiv = document.querySelector('.music');
+
+fetch('https://mbo-sd.nl/period3-fetch/music-artist-david-bowie')
+    .then(myData => myData.json())
+    .then(jsonData => showOnScreen(jsonData));
+
+function showOnScreen(jsonData) {
+    for (let i = 0; i < jsonData.length; i++) {
+        const object = jsonData[i];
+
+        musicDiv.innerHTML +=
+        `<h1> ${object.title}</h1>` +
+        `<p> ${object.description}</p>` +
+        `<p> ${object.releaseYear}</p>` ;
+    }
+}
+
